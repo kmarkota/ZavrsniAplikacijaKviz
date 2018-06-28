@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "232046912674",
+    "firebase_url": "https://aplikacijazavrsni-e2026.firebaseio.com",
+    "project_id": "aplikacijazavrsni-e2026",
+    "storage_bucket": "aplikacijazavrsni-e2026.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232046912674:android:06a5325c939019c7",
+        "android_client_info": {
+          "package_name": "com.example.junijepalmotic.zavrsniaplikacijakviz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232046912674-4lq2tjcjm0u0niveu53hn4elkpqoo62c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.junijepalmotic.zavrsniaplikacijakviz",
+            "certificate_hash": "2d825667a3fcfa4d89e7206f2378c0df9b8ff24c"
+          }
+        },
+        {
+          "client_id": "232046912674-75ecj627kukhqc3g93mjhgne2puo1hkq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyf6AzKIeC8JU-KmHo1mG6OAezAX8aLBg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232046912674-75ecj627kukhqc3g93mjhgne2puo1hkq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

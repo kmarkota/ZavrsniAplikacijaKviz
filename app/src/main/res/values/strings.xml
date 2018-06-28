@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ZavrsniAplikacijaKviz</string>
+    <string name="žena">Ž</string>
+    <string name="Muško">M</string>
+    <string name="dob">Dob:</string>
+    <string name="broj_godina">Broj godina</string>
+    <string name="dalje">Button</string>
+
+</resources>

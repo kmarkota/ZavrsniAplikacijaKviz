@@ -26,23 +26,23 @@ public class Main2Activity extends AppCompatActivity {
 
     Button odg1,odg2,odg3,odg4,odg5;
     TextView pitanje;
-    Integer n=0;
+   public Integer n=0,k=1;
 
 
     FirebaseDatabase database;
-    DatabaseReference pitanja,choice1,choice2,choice3,choice4,choice5;
+    DatabaseReference pitanja,choice1,choice2,choice3,choice4,choice5,odgovori;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        odg1 =(Button)findViewById(R.id.odgovor1);
-        odg2 =(Button)findViewById(R.id.odgovor2);
-        odg3 =(Button)findViewById(R.id.odgovor3);
-        odg4 =(Button)findViewById(R.id.odgovor4);
-        odg5 =(Button)findViewById(R.id.odgovor5);
-        pitanje=(TextView)findViewById(R.id.pitanje);
+        odg1 =findViewById(R.id.odgovor1);
+        odg2 =findViewById(R.id.odgovor2);
+        odg3 =findViewById(R.id.odgovor3);
+        odg4 =findViewById(R.id.odgovor4);
+        odg5 =findViewById(R.id.odgovor5);
+        pitanje=findViewById(R.id.pitanje);
 
         database=FirebaseDatabase.getInstance();
 
@@ -145,6 +145,12 @@ public class Main2Activity extends AppCompatActivity {
         odg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
+                Odgovori odgovor= new Odgovori(odg1.getText().toString());
+
+                odgovori.push().setValue(odgovor);
+
+
                 n++;
                 updateQuestion();
             }
@@ -152,6 +158,9 @@ public class Main2Activity extends AppCompatActivity {
         odg2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
+                Odgovori odgovor=new Odgovori((odg2.getText().toString()));
+                odgovori.push().setValue(odgovor);
                 n++;
                 updateQuestion();
             }
@@ -159,6 +168,9 @@ public class Main2Activity extends AppCompatActivity {
         odg3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
+                Odgovori odgovor= new Odgovori(odg3.getText().toString());
+                odgovori.push().setValue(odgovor);
                 n++;
                 updateQuestion();
             }
@@ -166,6 +178,9 @@ public class Main2Activity extends AppCompatActivity {
         odg4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
+                Odgovori odgovor= new Odgovori(odg4.getText().toString());
+                odgovori.push().setValue(odgovor);
                 n++;
                 updateQuestion();
             }
@@ -173,6 +188,9 @@ public class Main2Activity extends AppCompatActivity {
         odg5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
+                Odgovori odgovor= new Odgovori(odg5.getText().toString());
+                odgovori.push().setValue(odgovor);
                 n++;
                 updateQuestion();
             }

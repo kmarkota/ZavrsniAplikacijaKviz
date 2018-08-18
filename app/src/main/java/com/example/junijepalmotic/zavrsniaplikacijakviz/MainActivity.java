@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.junijepalmotic.zavrsniaplikacijakviz.Model.Main2Activity;
+import com.example.junijepalmotic.zavrsniaplikacijakviz.Model.Odgovori;
 import com.example.junijepalmotic.zavrsniaplikacijakviz.Model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,18 +25,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    RadioButton Musko,Zensko,rb;// za unos na firebase
+    RadioButton rb;// za unos na firebase
     EditText Dob,Obraz;// za unso na firebase
-    Button Dalje,UnesiPodatke;/// dalje za unos na firebase
+    Button Dalje;/// dalje za unos na firebase
     RadioGroup Spolicc;
-    String Spolic;
+
     // za pitanja
-    Button odg1,odg2,odg3,odg4,odg5;
+
     TextView pitanje;
 
 
     FirebaseDatabase database;
-    DatabaseReference korisnici,pitanja,choice1,choice2,choice3,choice4,choice5;
+    DatabaseReference korisnici;
 
 
     @Override
@@ -47,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         korisnici=database.getReference("Korisnici");
 
 
-        Spolicc =(RadioGroup)findViewById(R.id.Spol);
-        Dob=(EditText)findViewById(R.id.editText);
-        Dalje=(Button)findViewById(R.id.dalje);
-        Obraz=(EditText)findViewById(R.id.obrazovanjeText);
+        Spolicc =findViewById(R.id.Spol);
+        Dob=findViewById(R.id.editText);
+        Dalje=findViewById(R.id.dalje);
+        Obraz=findViewById(R.id.obrazovanjeText);
 
 
        // updateQuestion();
@@ -62,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
                 int radioButtonId= Spolicc.getCheckedRadioButtonId();
                 rb=(RadioButton)findViewById(radioButtonId);
                 User users = new User(rb.getText().toString(),Dob.getText().toString(),Obraz.getText().toString());
-                //String value = Dob.getText().toString();
-                //korisnici.child("name").setValue(value);
                 korisnici.push().setValue(users);
                Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+
                startActivity(intent);
+
 
             }
         });

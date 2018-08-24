@@ -1,71 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/big_vertical"
     >
 
     <TextView
         android:id="@+id/pitanje"
-        android:background="@android:color/background_light"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:background="@android:color/background_light"
+        android:textAlignment="center"
+        android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/odgovor1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/odgovor2"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:text="Uopće se ne slažem"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/odgovor2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/odgovor3"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/odgovor3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/odgovor4"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:text="Ne znam"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/odgovor4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:text="Slažem se"
-        android:textSize="14sp" />
+        android:layout_marginBottom="61dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/odgovor5"
-        android:layout_width="match_parent"
+        <Button
+            android:id="@+id/nazad"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Nazad" />
+
+        <Button
+            android:id="@+id/dalje"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="Dalje" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/brPitanja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="135dp"
+        android:layout_marginEnd="87dp"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/maxBrPitanja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/brPitanja"
+        android:layout_marginStart="-87dp"
+        android:layout_toEndOf="@+id/brPitanja"
+        android:text="/15" />
+
+    <CheckBox
+        android:id="@+id/odgovor1"
+        android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/odgovor4"
-        android:gravity="center"
-        android:text="U potpunosti se slažem"
-        android:textSize="14sp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="176dp"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/odgovor2"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/odgovor1"
+        android:layout_marginTop="222dp"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/odgovor3"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/odgovor1"
+        android:layout_centerVertical="true"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/odgovor4"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/odgovor1"
+        android:layout_marginBottom="225dp"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/odgovor5"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/odgovor1"
+        android:layout_marginBottom="177dp"
+        android:text="CheckBox" />
 
 
-</LinearLayout>
+</RelativeLayout>

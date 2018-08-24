@@ -60,13 +60,20 @@ public class MainActivity extends AppCompatActivity {
         Dalje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int radioButtonId= Spolicc.getCheckedRadioButtonId();
-                rb=(RadioButton)findViewById(radioButtonId);
-                User users = new User(rb.getText().toString(),Dob.getText().toString(),Obraz.getText().toString());
-                korisnici.push().setValue(users);
-               Intent intent = new Intent(MainActivity.this,Main2Activity.class);
 
-               startActivity(intent);
+                if( Dob.getText().toString().isEmpty() || Obraz.getText().toString().isEmpty()){
+                   Toast.makeText(MainActivity.this,"Popunite sve podatke",Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    int radioButtonId= Spolicc.getCheckedRadioButtonId();
+                    rb=(RadioButton)findViewById(radioButtonId);
+                    User users = new User(rb.getText().toString(),Dob.getText().toString(),Obraz.getText().toString());
+                    korisnici.push().setValue(users);
+                    Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+                    startActivity(intent);
+                }
+
 
 
             }

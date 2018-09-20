@@ -1,6 +1,7 @@
 package com.example.junijepalmotic.zavrsniaplikacijakviz;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,8 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
     CheckBox answer1,answer2,answer3,answer4,answer5;
     public String answerText;
     TextView pitanje,brPitanja;
-    public Integer n=1;
+    public Integer n=1, bodovi=0;
+
 
 
     FirebaseDatabase database;
@@ -38,15 +40,19 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
         answer4=findViewById(R.id.odgovor4);
         answer5=findViewById(R.id.odgovor5);
 
+
         pitanje=findViewById(R.id.pitanje);
         daljeButton =findViewById(R.id.dalje);
         brPitanja=findViewById(R.id.brPitanja);
+
 
         database=FirebaseDatabase.getInstance();
 
         daljeButton.setEnabled(false);
         updateQuestion();
         onCheckBoxClick();
+
+
 
     }
 
@@ -147,15 +153,19 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
                 odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
                 Odgovori answ= new Odgovori(answer1.getText().toString());
 
+               bodovi=bodovi+2;
+
                 answer2.setEnabled(false);
                 answer3.setEnabled(false);
                 answer4.setEnabled(false);
                 answer5.setEnabled(false);
+                daljeButton.setEnabled(true);
                 if(!answer1.isChecked()) {
                     answer2.setEnabled(true);
                     answer3.setEnabled(true);
                     answer4.setEnabled(true);
                     answer5.setEnabled(true);
+                    daljeButton.setEnabled(false);
                 }
 
               answerText = answ.getOdgovori().toString();
@@ -168,16 +178,19 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
                 Odgovori answ=new Odgovori((answer2.getText().toString()));
                 answerText = answ.getOdgovori().toString();
 
+                bodovi=bodovi+1;
 
                 answer1.setEnabled(false);
-                answer2.setEnabled(false);
+                answer4.setEnabled(false);
                 answer3.setEnabled(false);
                 answer5.setEnabled(false);
+                daljeButton.setEnabled(true);
                 if(!answer2.isChecked()) {
                     answer1.setEnabled(true);
-                    answer2.setEnabled(true);
+                    answer4.setEnabled(true);
                     answer3.setEnabled(true);
                     answer5.setEnabled(true);
+                    daljeButton.setEnabled(false);
                 }
 
 
@@ -190,15 +203,19 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
                 odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
                 Odgovori answ= new Odgovori(answer3.getText().toString());
                  answerText = answ.getOdgovori().toString();
+
+                 bodovi=bodovi+0;
                 answer1.setEnabled(false);
                 answer2.setEnabled(false);
                 answer4.setEnabled(false);
                 answer5.setEnabled(false);
+                daljeButton.setEnabled(true);
                 if(!answer3.isChecked()) {
                     answer2.setEnabled(true);
                     answer1.setEnabled(true);
                     answer4.setEnabled(true);
                     answer5.setEnabled(true);
+                    daljeButton.setEnabled(false);
                 }
 
 
@@ -210,15 +227,20 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
                 odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
                 Odgovori answ= new Odgovori(answer4.getText().toString());
                 answerText = answ.getOdgovori().toString();
+                bodovi=bodovi-1;
+
+
                 answer1.setEnabled(false);
                 answer2.setEnabled(false);
                 answer3.setEnabled(false);
                 answer5.setEnabled(false);
+                daljeButton.setEnabled(true);
                 if(!answer4.isChecked()) {
                     answer2.setEnabled(true);
                     answer3.setEnabled(true);
                     answer1.setEnabled(true);
                     answer5.setEnabled(true);
+                    daljeButton.setEnabled(false);
                 }
 
 
@@ -230,15 +252,19 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
                 odgovori=database.getReference("Odgovori").child("odgovori na pitanje "+n.toString());
                 Odgovori answ= new Odgovori(answer5.getText().toString());
                 answerText = answ.getOdgovori().toString();
+                bodovi=bodovi-2;
+
                 answer1.setEnabled(false);
                 answer2.setEnabled(false);
                 answer3.setEnabled(false);
                 answer4.setEnabled(false);
+                daljeButton.setEnabled(true);
                 if(!answer5.isChecked()) {
                     answer2.setEnabled(true);
                     answer3.setEnabled(true);
                     answer4.setEnabled(true);
                     answer1.setEnabled(true);
+                    daljeButton.setEnabled(false);
                 }
 
 
@@ -249,16 +275,28 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View v) {
 
                 n++;
+
                 brPitanja.setText(n.toString());
 
-                updateQuestion();
 
+                updateQuestion();
+                odgovori.push().setValue(answerText);
                 answer1.setEnabled(true);
                 answer2.setEnabled(true);
                 answer3.setEnabled(true);
                 answer4.setEnabled(true);
                 answer5.setEnabled(true);
+                daljeButton.setEnabled(false);
                 unCheck();
+
+
+                if(n>15){
+                    Intent intent = new Intent(SetAnswersActivity.this,ResultActivity.class);
+                    intent.putExtra("ba",bodovi);
+                    startActivity(intent);
+                    odgovori.child(odgovori.getKey()).removeValue();
+                    finish();
+                }
             }
         });
 
@@ -276,5 +314,4 @@ public class SetAnswersActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-    }
-}
+}}

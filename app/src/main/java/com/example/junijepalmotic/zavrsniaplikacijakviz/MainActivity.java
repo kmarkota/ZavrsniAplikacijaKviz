@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
     EditText dob,obraz;
     Button daljeButton;
     RadioGroup spol;
-
-
-
     TextView pitanje;
     FirebaseDatabase database;
     DatabaseReference korisnici;
@@ -30,18 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        database=FirebaseDatabase.getInstance();
-        korisnici=database.getReference("Korisnici");
-
-
+            database=FirebaseDatabase.getInstance();
+            korisnici=database.getReference("Korisnici");
         spol =findViewById(R.id.Spol);
         dob=findViewById(R.id.editText);
         daljeButton =findViewById(R.id.dalje);
         obraz=findViewById(R.id.obrazovanjeText);
-
-
-
-
 
         daljeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
                    Toast.makeText(MainActivity.this,"Popunite sve podatke",Toast.LENGTH_SHORT).show();
 
                 }else{
-
                     int radioButtonId= spol.getCheckedRadioButtonId();
                     rb=findViewById(radioButtonId);
                     User users = new User(rb.getText().toString(),dob.getText().toString(),obraz.getText().toString());
                     korisnici.push().setValue(users);
                     Intent intent = new Intent(MainActivity.this,SetAnswersActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
